@@ -17,7 +17,7 @@ class _ExpensesState extends State<Expenses> {
     Expense(
       title: 'Flutter course',
       date: DateTime.now(),
-      amount: 20.22,
+      amount: 20.62355,
       category: Category.work,
     ),
     Expense(
@@ -36,13 +36,13 @@ class _ExpensesState extends State<Expenses> {
       title: 'movies',
       date: DateTime.now(),
       amount: 34.22,
-      category: Category.leisure,
+      category: Category.food,
     ),
     Expense(
       title: 'movies',
       date: DateTime.now(),
       amount: 34.22,
-      category: Category.leisure,
+      category: Category.travel,
     ),
   ];
   @override
