@@ -45,12 +45,14 @@ class _ExpensesState extends State<Expenses> {
       category: Category.travel,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
           children: [
+            // Toolbar with the Add Button => Row()
             const Text('App bar'),
             const Text('charts'),
             Expanded(
