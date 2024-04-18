@@ -34,24 +34,24 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           TextField(
             controller: _amountController,
-            maxLength: 20,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              label: Text('Title'),
+              prefixText: '\$',
+              label: Text('Amount'),
             ),
           ),
           Row(
             children: [
+              TextButton(
+                onPressed: () {},
+                child: const Text('Delete'),
+              ),
               ElevatedButton(
                 onPressed: () {
                   print(_titleController.text);
                   print(_amountController.text);
                 },
                 child: const Text('Save Expense'),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Delete'),
               ),
             ],
           )
