@@ -72,7 +72,11 @@ class _NewExpenseState extends State<NewExpense> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text('Selected Date'),
+                    Text(
+                      _selectedDate == null
+                          ? 'Selected Date'
+                          : formatter.format(_selectedDate!),
+                    ),
                     IconButton(
                         onPressed: _presentDatePicker,
                         icon: const Icon(Icons.calendar_month))
