@@ -1,7 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:expense_tracker/models/expense.dart';
 
 final formatter = DateFormat.yMd();
 
@@ -87,6 +91,17 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           Row(
             children: [
+              DropdownButton(
+                  items: Category.values
+                      .map(
+                        (category) => DropdownMenuItem(
+                          child: Text(
+                            category.name.toString(),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {}),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
