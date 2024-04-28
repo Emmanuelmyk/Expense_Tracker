@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +91,7 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             children: [
               DropdownButton(
-                  items: Category.values
+                  items: Cat.values
                       .map(
                         (category) => DropdownMenuItem(
                           child: Text(

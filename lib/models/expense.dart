@@ -5,13 +5,13 @@ import 'package:intl/intl.dart';
 final formatter = DateFormat.yMd();
 const uuid = Uuid();
 
-enum Category { food, travel, leisure, work }
+enum Cat { food, travel, leisure, work }
 
 const categoryIcons = {
-  Category.food: Icons.lunch_dining,
-  Category.travel: Icons.flight_takeoff,
-  Category.leisure: Icons.movie,
-  Category.work: Icons.work,
+  Cat.food: Icons.lunch_dining,
+  Cat.travel: Icons.flight_takeoff,
+  Cat.leisure: Icons.movie,
+  Cat.work: Icons.work,
 };
 
 class Expense {
@@ -26,7 +26,7 @@ class Expense {
   final String title;
   final double amount;
   final DateTime date;
-  final Category category;
+  final Cat category;
 
   String get formattedDAte {
     return formatter.format(date);
