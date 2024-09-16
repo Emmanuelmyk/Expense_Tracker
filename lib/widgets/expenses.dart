@@ -1,8 +1,7 @@
-import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
+import 'package:expense_tracker/widgets/extenses_list/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
-// import 'package:flutter/widgets.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -14,69 +13,73 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<Expense> _registeredExpenses = [
-    Expense(
-      title: 'Office Desk',
-      date: DateTime.now(),
-      amount: 20.62355,
-      category: Cat.work,
-    ),
-    Expense(
-      title: 'Burger',
-      date: DateTime.now(),
-      amount: 34.22,
-      category: Cat.food,
-    ),
-    Expense(
-      title: 'movies',
-      date: DateTime.now(),
-      amount: 34.22,
-      category: Cat.leisure,
-    ),
-    Expense(
-      title: 'Abuja',
-      date: DateTime.now(),
-      amount: 34.22,
-      category: Cat.travel,
-    ),
-    Expense(
-      title: 'Fried Rice',
-      date: DateTime.now(),
-      amount: 34.22,
-      category: Cat.food,
-    ),
-  ];
+  final List<Expense> _registeredExpenses = [];
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(onAddExpense: _addExpense),
+    );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Expense deleted.'),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expenseIndex, expense);
+              });
+            }),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No Expenses Found.'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expense Tracker'),
-        titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 25, fontWeight: FontWeight.w700),
-        backgroundColor: const Color.fromARGB(255, 207, 51, 51),
+        title: const Text('Expense Tracker App'),
         actions: [
           IconButton(
-              onPressed: _openAddExpenseOverlay,
-              icon: const Icon(color: Colors.white, Icons.add)),
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Text('The Charts'),
-            Expanded(
-              child: ExpensesList(expenses: _registeredExpenses),
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          const Text("the chart"),
+          Expanded(
+            child: mainContent,
+          ),
+        ],
       ),
     );
   }
