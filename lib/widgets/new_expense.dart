@@ -94,7 +94,8 @@ class _NewExpenseState extends State<NewExpense> {
                   maxLength: 10,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    prefixText: '\$',
+                    // prefixText: '\$',
+                    prefixText: 'NGN ',
                     label: Text('Amount'),
                   ),
                 ),

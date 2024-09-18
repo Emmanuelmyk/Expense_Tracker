@@ -25,7 +25,7 @@ void main() {
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.onPrimaryContainer,
+          backgroundColor: kColorScheme.onPrimaryFixedVariant,
           foregroundColor: kColorScheme.primaryContainer,
         ),
         cardTheme: const CardTheme().copyWith(
