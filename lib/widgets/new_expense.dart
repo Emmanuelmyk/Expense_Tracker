@@ -143,7 +143,7 @@ class _NewExpenseState extends State<NewExpense> {
                     });
                   }),
               const SizedBox(width: 10),
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
